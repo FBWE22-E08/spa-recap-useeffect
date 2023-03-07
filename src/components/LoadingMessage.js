@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 
-export default function DefaultMessage() {
+export function LoadingMessage() {
   useEffect(() => {
     return () => {
       console.log("component has unmounted!");
@@ -9,7 +9,7 @@ export default function DefaultMessage() {
 
   return (
     <>
-      <p>User not yet loaded!</p>
+      <p>Loading....!</p>
     </>
   );
 }

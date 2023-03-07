@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 import User from "./components/User";
-import DefaultMessage from "./components/DefaultMessage";
+import { LoadingMessage } from "./components/LoadingMessage";
 
 // root (not route!)
 function App() {
@@ -22,6 +22,10 @@ function App() {
   }
 
   useEffect(() => {
+    fetchRandomUser();
+  }, []);
+
+  useEffect(() => {
     console.log("The dependency has changed!");
   }, [user]);
 
@@ -29,7 +33,7 @@ function App() {
   // only expressions in JSX please!
   return (
     <div className="App">
-      {user ? <User user={user} /> : <DefaultMessage />}
+      {user ? <User user={user} /> : <LoadingMessage />}
       <button onClick={handleClick}>Click Me!</button>
     </div>
   );
