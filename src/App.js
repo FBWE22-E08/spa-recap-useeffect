@@ -1,14 +1,12 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import User from "./components/User";
+import DefaultMessage from "./components/DefaultMessage";
 
 // root (not route!)
 function App() {
-  // handler function
-
   //     getter    setter
   const [user, setUser] = useState(false);
-  // !important! user is a raw object, it can not be rendered by React (it is not a valid React child)
 
   async function fetchRandomUser() {
     // synchronous
@@ -23,11 +21,15 @@ function App() {
     fetchRandomUser();
   }
 
+  useEffect(() => {
+    console.log("The dependency has changed!");
+  }, [user]);
+
   // JSX - JavaScript XML
   // only expressions in JSX please!
   return (
     <div className="App">
-      {user ? <User user={user} /> : <p>User not yet loaded</p>}
+      {user ? <User user={user} /> : <DefaultMessage />}
       <button onClick={handleClick}>Click Me!</button>
     </div>
   );
